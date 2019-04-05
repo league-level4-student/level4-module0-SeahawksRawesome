@@ -87,7 +87,11 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 	@Override
 	public void paintComponent(Graphics g) {
 		//6. Iterate through the cells and draw them all
-		
+		for(int i = 0; i < cell.length; i++) {
+			for(int j = 0; j < cell[i].length; i++) {
+				cell[i][j].draw(g);
+			}
+		}
 		
 		
 		// draws grid
