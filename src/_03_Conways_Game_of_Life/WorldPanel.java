@@ -106,12 +106,16 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 		int[][] livingNeighbors = new int[cellsPerRow][cellsPerRow];
 		for(int i = 0; i < livingNeighbors.length; i++) {
 			for(int j = 0; j < livingNeighbors[i].length; i++) {
-			livingNeighbors[i][j].getLivingNeighbors(i, j);
+			livingNeighbors[i][j] = getLivingNeighbors(cell[i][j].getX(), cell[i][j].getY());
 			}
 		}
 		
 		//8. check if each cell should live or die
-	
+		for(int i = 0; i < cell.length; i++) {
+			for(int j = 0; j < cell[i].length; i++) {
+			cell[i][j].liveOrDie(getLivingNeighbors(cell[i][j].getX(), cell[i][j].getY()));
+			}
+		}
 		
 		
 		
@@ -123,8 +127,48 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 	//   living neighbors there are of the 
 	//   cell identified by x and y
 	public int getLivingNeighbors(int x, int y){
-		
-		return 0;
+		int Neighbors = 0; 
+		if(x > 0) {
+			if(cell[x-1][y].isAlive) {
+				Neighbors++;
+			}
+		}
+		if(x < cellsPerRow-1) {
+			if(cell[x+1][y].isAlive) {
+				Neighbors++;
+			}
+		}
+		if(y > 0) {
+			if(cell[x][y-1].isAlive) {
+				Neighbors++;
+			}
+		}
+		if(y < cellsPerRow-1) {
+			if(cell[x][y+1].isAlive) {
+				Neighbors++;
+			}
+		}
+		if(x > 0 && y > 0) {
+			if(cell[x-1][y-1].isAlive) {
+				Neighbors++;
+			}
+		}
+		if(x > 0 && y < cellsPerRow-1) {
+			if(cell[x-1][y+1].isAlive) {
+				Neighbors++;
+			}
+		}
+		if(x < cellsPerRow-1 && y > 0) {
+			if(cell[x+1][y-1].isAlive) {
+				Neighbors++;
+			}
+		}
+		if(x < cellsPerRow-1 && y < cellsPerRow-1) {
+			if(cell[x+1][y+1].isAlive) {
+				Neighbors++;
+			}
+		}
+		return Neighbors;
 	}
 
 	@Override
