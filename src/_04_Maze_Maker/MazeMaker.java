@@ -24,6 +24,7 @@ public class MazeMaker{
 		//4. select a random cell to start
 		
 		
+		
 		//5. call selectNextPath method with the randomly selected cell
 		
 		
