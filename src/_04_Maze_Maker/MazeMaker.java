@@ -40,30 +40,37 @@ public class MazeMaker{
 	ArrayList<Cell> ceels = getUnvisitedNeighbors(currentCell);
 		//C. if has unvisited neighbors,
 		if(ceels.size() == 0) {
-		
-			//C1. select one at random.
 			
+			//C1. select one at random.
+			Random rand = new Random();
+			Cell temp  = ceels.get(rand.nextInt(ceels.size() -1));
 			//C2. push it to the stack
-		
+			uncheckedCells.push(temp);
 			//C3. remove the wall between the two cells
-
+			removeWalls(temp, currentCell);
 			//C4. make the new cell the current cell and mark it as visited
-		
+			currentCell = temp;
+			currentCell.hasBeenVisited();
 			//C5. call the selectNextPath method with the current cell
-		
+			selectNextPath(currentCell);
 		}
 			
 		//D. if all neighbors are visited
+		if(currentCell.hasBeenVisited()) {
+			
 		
 			//D1. if the stack is not empty
-			
-				// D1a. pop a cell from the stack
-		
-				// D1b. make that the current cell
-		
-				// D1c. call the selectNextPath method with the current cell
+			if(!uncheckedCells.isEmpty()) {
 				
 			
+				// D1a. pop a cell from the stack
+				Cell curr = uncheckedCells.pop();
+				// D1b. make that the current cell
+				currentCell = curr;
+				// D1c. call the selectNextPath method with the current cell
+				selectNextPath(currentCell);
+			}	
+		}	
 		
 	}
 
