@@ -78,13 +78,19 @@ public class MazeMaker{
 	//   This method will check if c1 and c2 are adjacent.
 	//   If they are, the walls between them are removed.
 	private static void removeWalls(Cell c1, Cell c2) {
-		
+		if(Math.abs(c1.getX() - c2.getX()) <= width/5) {
+			if(Math.abs(c1.getY() - c2.getY()) <= height/5) {
+				c1.hasEastWall(); 
+				c2.hasWestWall();
+			}
+		}
 	}
 	
 	//8. Complete the getUnvisitedNeighbors method
 	//   Any unvisited neighbor of the passed in cell gets added
 	//   to the ArrayList
 	private static ArrayList<Cell> getUnvisitedNeighbors(Cell c) {
+		
 		return null;
 	}
 }
